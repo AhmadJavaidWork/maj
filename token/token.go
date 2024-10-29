@@ -17,6 +17,11 @@ const (
 	SEMICOLON = ";"
 	COLON     = ":"
 
+	LPAREN = "("
+	RPAREN = ")"
+	LBRACE = "{"
+	RBRACE = "}"
+
 	// Identifiers
 	IDENT  = "IDENT"
 	INT    = "INT"
@@ -25,6 +30,7 @@ const (
 	// Keywords
 	FUNCTION = "FUNCTION"
 	LET      = "LET"
+	RETURN   = "RETURN"
 )
 
 type TokenType string
@@ -35,8 +41,9 @@ type Token struct {
 }
 
 var keywords = map[string]TokenType{
-	"fn":  FUNCTION,
-	"let": LET,
+	"fn":     FUNCTION,
+	"let":    LET,
+	"return": RETURN,
 }
 
 func LookupIdent(ident string) TokenType {

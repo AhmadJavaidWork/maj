@@ -10,9 +10,9 @@ func TestNextToken(t *testing.T) {
 	input := `
 	let a = 10;
 	let b = 20;
-	a + b;
-	a / 10;
-	a ! b;
+	let c = fn(a, b) {
+		return a + b;
+	}
 	`
 	tests := []struct {
 		expectedType    token.TokenType
@@ -28,18 +28,22 @@ func TestNextToken(t *testing.T) {
 		{token.ASSIGN, "="},
 		{token.INT, "20"},
 		{token.SEMICOLON, ";"},
+		{token.LET, "let"},
+		{token.IDENT, "c"},
+		{token.ASSIGN, "="},
+		{token.FUNCTION, "fn"},
+		{token.LPAREN, "("},
+		{token.IDENT, "a"},
+		{token.COMMA, ","},
+		{token.IDENT, "b"},
+		{token.RPAREN, ")"},
+		{token.LBRACE, "{"},
+		{token.RETURN, "return"},
 		{token.IDENT, "a"},
 		{token.PLUS, "+"},
 		{token.IDENT, "b"},
 		{token.SEMICOLON, ";"},
-		{token.IDENT, "a"},
-		{token.SLASH, "/"},
-		{token.INT, "10"},
-		{token.SEMICOLON, ";"},
-		{token.IDENT, "a"},
-		{token.BANG, "!"},
-		{token.IDENT, "b"},
-		{token.SEMICOLON, ";"},
+		{token.RBRACE, "}"},
 		{token.EOF, ""},
 	}
 

@@ -41,6 +41,14 @@ func (l *Lexer) NextToken() token.Token {
 		tok = token.Token{Type: token.COLON, Literal: ":"}
 	case '*':
 		tok = token.Token{Type: token.ASTERISK, Literal: "*"}
+	case '(':
+		tok = token.Token{Type: token.LPAREN, Literal: "("}
+	case ')':
+		tok = token.Token{Type: token.RPAREN, Literal: ")"}
+	case '{':
+		tok = token.Token{Type: token.LBRACE, Literal: "{"}
+	case '}':
+		tok = token.Token{Type: token.RBRACE, Literal: "}"}
 	default:
 		if isLetter(l.ch) {
 			tok.Literal = l.readIdentifier(isLetter)
