@@ -11,6 +11,13 @@ const (
 	BANG     = "!"
 	SLASH    = "/"
 	ASTERISK = "*"
+	LT       = "<"
+	GT       = ">"
+
+	EQ     = "=="
+	NOT_EQ = "!="
+	LT_EQ  = "<="
+	GT_EQ  = ">="
 
 	// Delimeters
 	COMMA     = ","

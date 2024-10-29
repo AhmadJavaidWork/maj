@@ -13,6 +13,11 @@ func TestNextToken(t *testing.T) {
 	let c = fn(a, b) {
 		return a + b;
 	}
+	a == b;
+	a < b;
+	a > b;
+	a <= b;
+	a >= b;
 	`
 	tests := []struct {
 		expectedType    token.TokenType
@@ -44,6 +49,26 @@ func TestNextToken(t *testing.T) {
 		{token.IDENT, "b"},
 		{token.SEMICOLON, ";"},
 		{token.RBRACE, "}"},
+		{token.IDENT, "a"},
+		{token.EQ, "=="},
+		{token.IDENT, "b"},
+		{token.SEMICOLON, ";"},
+		{token.IDENT, "a"},
+		{token.LT, "<"},
+		{token.IDENT, "b"},
+		{token.SEMICOLON, ";"},
+		{token.IDENT, "a"},
+		{token.GT, ">"},
+		{token.IDENT, "b"},
+		{token.SEMICOLON, ";"},
+		{token.IDENT, "a"},
+		{token.LT_EQ, "<="},
+		{token.IDENT, "b"},
+		{token.SEMICOLON, ";"},
+		{token.IDENT, "a"},
+		{token.GT_EQ, ">="},
+		{token.IDENT, "b"},
+		{token.SEMICOLON, ";"},
 		{token.EOF, ""},
 	}
 
