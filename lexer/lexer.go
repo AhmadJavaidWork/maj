@@ -73,6 +73,8 @@ func (l *Lexer) NextToken() token.Token {
 		} else {
 			tok = token.Token{Type: token.GT, Literal: ">"}
 		}
+	case '"':
+		tok = token.Token{Type: token.STRING, Literal: l.readString()}
 	default:
 		if isLetter(l.ch) {
 			tok.Literal = l.readIdentifier(isLetter)
@@ -133,4 +135,15 @@ func (l *Lexer) peekChar() byte {
 	} else {
 		return l.input[l.readPosition]
 	}
+}
+
+func (l *Lexer) readString() string {
+	pos := l.position + 1
+	for {
+		l.readChar()
+		if l.ch == '"' || l.ch == 0 {
+			break
+		}
+	}
+	return l.input[pos:l.position]
 }

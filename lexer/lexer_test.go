@@ -18,6 +18,7 @@ func TestNextToken(t *testing.T) {
 	a > b;
 	a <= b;
 	a >= b;
+	let d = "hello, world";
 	`
 	tests := []struct {
 		expectedType    token.TokenType
@@ -68,6 +69,11 @@ func TestNextToken(t *testing.T) {
 		{token.IDENT, "a"},
 		{token.GT_EQ, ">="},
 		{token.IDENT, "b"},
+		{token.SEMICOLON, ";"},
+		{token.LET, "let"},
+		{token.IDENT, "d"},
+		{token.ASSIGN, "="},
+		{token.STRING, "hello, world"},
 		{token.SEMICOLON, ";"},
 		{token.EOF, ""},
 	}
