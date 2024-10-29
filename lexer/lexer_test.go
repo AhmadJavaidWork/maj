@@ -8,21 +8,38 @@ import (
 
 func TestNextToken(t *testing.T) {
 	input := `
-	=+-!/*,;:
+	let a = 10;
+	let b = 20;
+	a + b;
+	a / 10;
+	a ! b;
 	`
 	tests := []struct {
 		expectedType    token.TokenType
 		expectedLiteral string
 	}{
+		{token.LET, "let"},
+		{token.IDENT, "a"},
 		{token.ASSIGN, "="},
-		{token.PLUS, "+"},
-		{token.MINUS, "-"},
-		{token.BANG, "!"},
-		{token.SLASH, "/"},
-		{token.ASTERISK, "*"},
-		{token.COMMA, ","},
+		{token.INT, "10"},
 		{token.SEMICOLON, ";"},
-		{token.COLON, ":"},
+		{token.LET, "let"},
+		{token.IDENT, "b"},
+		{token.ASSIGN, "="},
+		{token.INT, "20"},
+		{token.SEMICOLON, ";"},
+		{token.IDENT, "a"},
+		{token.PLUS, "+"},
+		{token.IDENT, "b"},
+		{token.SEMICOLON, ";"},
+		{token.IDENT, "a"},
+		{token.SLASH, "/"},
+		{token.INT, "10"},
+		{token.SEMICOLON, ";"},
+		{token.IDENT, "a"},
+		{token.BANG, "!"},
+		{token.IDENT, "b"},
+		{token.SEMICOLON, ";"},
 		{token.EOF, ""},
 	}
 
