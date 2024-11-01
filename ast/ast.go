@@ -229,7 +229,9 @@ func (fl *FunctionLiteral) String() string {
 
 	out.WriteString(strings.Join(params, ", "))
 	out.WriteString(")")
+	out.WriteString(" { ")
 	out.WriteString(fl.Body.String())
+	out.WriteString(" }")
 
 	return out.String()
 }
